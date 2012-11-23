@@ -72,7 +72,7 @@
  
   $badgeData = array(
                  "version" => "1.0.0",
-                 "name" => "Firefox 17 Contributor",
+                 "name" => "Firefox 17 Contributor (proof of concept)",
                  "image" => "http://www.graememcc.co.uk/badger/images/fx17.png",
                  "description" => "Contributed new code to Firefox 17",
                  "criteria" => "http://www.graememcc.co.uk/badger/badgeCriteria.html",
