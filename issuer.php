@@ -2,7 +2,7 @@
   session_start();
 
   function redirectWithError($errorVar) {
-    $_SESSION[$errorVar] = TRUE;
+    $_SESSION[$errorVar] = true;
     header("Location: " . $_SERVER["HTTP_REFERER"]);
     exit();
   }
@@ -54,11 +54,36 @@
 
   $badgeFile = "assertions_issued/" . preg_replace("/@/", "", preg_replace("/\./", "_", $bugmail)) . ".json";
   if (file_exists($badgeFile)) {
+    // If the file already exists and is still valid, go straight to badge issued
+    // (perhaps the earner has removed the badge from their backpack and wants to restore it)
+    $contents = file_get_contents($badgeFile);
+    if ($contents === false) {
+      redirectWithError("fileError");
+    }
+
+    $existing = json_decode($contents, true);
+    if (!$existing) {
+      redirectWithError("jsonError");
+    }
+
+    if (isset($existing["expires"])) {
+      $existingExpiry = new DateTime($existing["expires"]);
+      $now = new DateTime();
+      if ($existingExpiry > $now) {
+        $_SESSION["badgeIssued"] = $badgeFile;
+        $_SESSION["expiry"] = $existingExpiry->format("F jS");
+        header("Location: http://www.graememcc.co.uk/badger/badgeIssued.php");
+        exit();
+      }
+    }
+
+    // If we couldn't find an expiry date, or the badge is expired, we shall
+    // issue a new badge with a fresh expiration date
     unlink($badgeFile);
   }
 
   if (count($data["bugs"]) === 0) {
-    $_SESSION["nobugs"] = TRUE;
+    $_SESSION["nobugs"] = true;
     header("Location: http://www.graememcc.co.uk/badger/encourage.php");
     exit();
   }
@@ -69,7 +94,13 @@
   }
 
   $salt = gen_salt();
- 
+
+  // Badge should expire in 28 days
+  $interval = new DateInterval("P28D");
+  $expiryDate = new DateTime();
+  $expiryDate->add($interval);
+  $_SESSION["expiry"] = $expiryDate->format("F jS");
+
   $badgeData = array(
                  "version" => "1.0.0",
                  "name" => "Firefox 17 Contributor (proof of concept)",
@@ -84,9 +115,10 @@
                        "recipient" => "sha256$" . hash("sha256", $bugmail . $salt),
                        "salt" => $salt,
                        "evidence" => createURL($bugzilla, $bugmail),
+                       "expires" => $expiryDate->format("Y-m-d"),
                        "badge" => $badgeData);
 
-  if (fwrite($handle, json_encode($contributorData)) === FALSE) {
+  if (fwrite($handle, json_encode($contributorData)) === false) {
     fclose($handle);
     redirectWithError("fileError");
   }

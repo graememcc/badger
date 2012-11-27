@@ -42,6 +42,9 @@
     </p>
     <button id="addButton">Add this badge to your backpack</button>
     <p>
+      As this is only a proof of concept, this badge will expire on <strong><?php echo $_SESSION["expiry"]; ?></strong>
+    </p>
+    <p>
       <noscript class="error">You must have Javascript enabled in order to add your badge to the backpack</noscript>
     </p>
 

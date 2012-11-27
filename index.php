@@ -31,6 +31,7 @@
   outputError("fileError", "File error");
   unset($_SESSION["badgeIssued"]);
   unset($_SESSION["nobugs"]);
+  unset($_SESSION["expiry"]);
 
 ?>
     <form action="issuer.php" method="post" id="theform">
