@@ -36,6 +36,10 @@
     redirectWithError("bugmail");
   }
 
+  if ($_POST["bugmail"] === "nobody@mozilla.org") {
+    redirectWithError("nobody");
+  }
+
   $bugmail = $_POST["bugmail"];
   $bugzilla = "https://bugzilla.mozilla.org/buglist.cgi";
   $api = "https://api-dev.bugzilla.mozilla.org/latest/bug";

@@ -26,6 +26,7 @@
 
   outputError("empty", "Please enter an email address");
   outputError("emailError", "Please enter a valid email address");
+  outputError("nobody", "nobody@mozilla.org would have earned a badge, but what about you?");
   outputError("bzError", "Bugzilla error");
   outputError("jsonError", "JSON error");
   outputError("fileError", "File error");
