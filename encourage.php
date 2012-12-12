@@ -22,6 +22,9 @@
     <p class="left">
       The good news is that it's easy to get involved in Firefox development! Why not visit <a href="http://www.whatcanidoformozilla.org">whatcanidoformozilla.org</a> to find out more?
     </p>
+    <p>
+      Also, view the <a href="http://www.graememcc.co.uk/2012/11/28/open-badges-for-contributions-to-specific-firefox-releases/" target="_blank">blog post</a> for more information on this experiment.
+    </p>
     <p class="left">
       (If you did contribute code to Firefox 17, email graememcc_firefox at graeme-online.co.uk with a link to a bug you fixed, so he can figure out what went wrong!)
     </p>

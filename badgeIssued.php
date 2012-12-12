@@ -45,6 +45,9 @@
       As this is only a proof of concept, this badge will expire on <strong><?php echo $_SESSION["expiry"]; ?></strong>
     </p>
     <p>
+      View the <a href="http://www.graememcc.co.uk/2012/11/28/open-badges-for-contributions-to-specific-firefox-releases/" target="_blank">blog post</a> for more information.
+    </p>
+    <p>
       <noscript class="error">You must have Javascript enabled in order to add your badge to the backpack</noscript>
     </p>
 
