@@ -62,7 +62,6 @@ button {
   -o-transition: all linear .25s;
   -ms-transition: all linear .25s;
   transition: all linear .25s
-  cursor: pointer;
 }
 
 .error {
@@ -83,4 +82,8 @@ button {
 .criteria img {
   vertical-align: top;
   padding-right: 5px;
+}
+
+#addButton {
+  cursor: pointer;
 }
