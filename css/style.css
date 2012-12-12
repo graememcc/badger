@@ -62,6 +62,7 @@ button {
   -o-transition: all linear .25s;
   -ms-transition: all linear .25s;
   transition: all linear .25s
+  cursor: pointer;
 }
 
 .error {
